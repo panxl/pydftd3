@@ -28,7 +28,7 @@ def test_dftd3_calculation(xyz, out):
     positions = np.loadtxt(xyz, usecols=(1, 2, 3), skiprows=2, max_rows=natoms).T / 0.52917726
 
     elements = np.loadtxt(xyz, dtype="U2", usecols=0, skiprows=2, max_rows=natoms)
-    numbers = np.zeros(natoms, dtype=np.int32)
+    numbers = np.zeros(natoms)
     for i, e in enumerate(elements):
         numbers[i] = Elements.index(e)
 

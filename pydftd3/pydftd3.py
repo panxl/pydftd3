@@ -34,7 +34,8 @@ class DFTD3Library(object):
         _parameters.update(parameters)
         version = _parameters.pop("version")
 
-        position = np.asarray(positions, order="F")
+        positions = np.asarray(positions, order="F")
+        numbers = np.asarray(numbers, dtype=np.int32)
         _parameters = np.fromiter(_parameters.values(), dtype=float)
         energy = c_double(0.)
         gradient = np.zeros((3, natoms), order="F")
