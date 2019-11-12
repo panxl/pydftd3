@@ -13,7 +13,7 @@ Elements = ["None", 'H', 'He',
 
 
 # DFTB3 D3(BJ) parameters
-d3_parameters = {
+parameters = {
     "s6": 1.0,
     "rs6": 0.5719,
     "s18": 0.5883,
@@ -32,8 +32,6 @@ def test_dftd3_calculation(xyz, out):
     numbers = np.zeros(natoms, dtype=np.int32)
     for i, e in enumerate(elements):
         numbers[i] = Elements.index(e)
-
-    parameters = np.fromiter(d3_parameters.values(), dtype=float)
 
     lib = DFTD3Library()
 

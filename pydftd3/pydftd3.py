@@ -22,6 +22,18 @@ class DFTD3Library(object):
 
     def DFTD3Calculation(self, natoms, positions, numbers, parameters, version):
 
+        _parameters = {
+            "s6": 1.,
+            "rs6": 0.,
+            "s18": 0.,
+            "rs18": 0.,
+            "alp": 14.,
+        }
+        
+        _parameters.update(parameters)
+
+        position = np.asarray(positions, order="F")
+        _parameters = np.fromiter(_parameters.values(), dtype=float)
         energy = c_double(0.)
         gradient = np.zeros((3, natoms), order="F")
 
@@ -29,7 +41,7 @@ class DFTD3Library(object):
             c_int(natoms),
             positions,
             numbers,
-            parameters,
+            _parameters,
             c_int(version),
             energy,
             gradient,
