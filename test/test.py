@@ -19,9 +19,8 @@ parameters = {
     "s18": 0.5883,
     "rs18": 3.6017,
     "alp": 14.0,
+    "version": 4,
 }
-
-version = 4
 
 
 def test_dftd3_calculation(xyz, out):
@@ -35,7 +34,7 @@ def test_dftd3_calculation(xyz, out):
 
     lib = DFTD3Library()
 
-    ene, grad = lib.DFTD3Calculation(natoms, positions, numbers, parameters, version)
+    ene, grad = lib.DFTD3Calculation(natoms, positions, numbers, parameters)
 
     ene_ref = np.loadtxt(out, max_rows=1)
     grad_ref = np.loadtxt(out, skiprows=1, max_rows=natoms).T

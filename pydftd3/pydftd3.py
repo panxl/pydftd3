@@ -20,7 +20,7 @@ class DFTD3Library(object):
  
         self.library.dftd3_dispersion.restypes = None
 
-    def DFTD3Calculation(self, natoms, positions, numbers, parameters, version):
+    def DFTD3Calculation(self, natoms, positions, numbers, parameters):
 
         _parameters = {
             "s6": 1.,
@@ -28,9 +28,11 @@ class DFTD3Library(object):
             "s18": 0.,
             "rs18": 0.,
             "alp": 14.,
+            "version": 4,
         }
-        
+ 
         _parameters.update(parameters)
+        version = _parameters.pop("version")
 
         position = np.asarray(positions, order="F")
         _parameters = np.fromiter(_parameters.values(), dtype=float)
